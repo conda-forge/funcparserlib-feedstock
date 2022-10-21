@@ -17,14 +17,17 @@ requirements:
   host:
     - pip
     - python
-    - setuptools <58
+    - poetry
   run:
     - python
 
 test:
   imports:
     - funcparserlib
-    - funcparserlib.tests
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/vlasovskikh/funcparserlib
