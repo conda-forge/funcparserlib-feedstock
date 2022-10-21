@@ -1,37 +1,40 @@
 {% set name = "funcparserlib" %}
-{% set version = "0.3.6" %}
+{% set version = "1.0.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: b7992eac1a3eb97b3d91faa342bfda0729e990bd8a43774c1592c091e563c91d
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 7dd33dd4299fc55cbdbf4b9fdfb3abc54d3b5ed0c694b83fb38e9e3e8ac38b6b
 
 build:
-  number: 5
-  script: "{{ PYTHON }} -m pip install . -vv"
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
     - python
-    - setuptools <58
+    - poetry
   run:
     - python
 
 test:
   imports:
     - funcparserlib
-    - funcparserlib.tests
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: "https://github.com/vlasovskikh/funcparserlib"
+  home: https://github.com/vlasovskikh/funcparserlib
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: "Recursive descent parsing library based on functional combinators"
+  summary: Recursive descent parsing library based on functional combinators
   dev_url: https://github.com/vlasovskikh/funcparserlib
 
 extra:
